@@ -86,8 +86,58 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Bwahahaha',
+    date: 'Mar 5th, 1996',
+    firstParagraph: `Blah blah blah blah blah blah blah? Blah! Blah blah blah blah blah blah blah. Blah blah??`,
+
+    secondParagraph: 'Blah blah blah blah blah blah blah? Blah! Blah blah blah blah blah blah blah. Blah blah??',
+
+    thirdParagraph: 'Blah blah blah blah blah blah blah? Blah! Blah blah blah blah blah blah blah. Blah blah??'
   }
 ];
+
+
+
+
+function articleMaker({ title, date, firstParagraph, secondParagraph, thirdParagraph }) {
+  const article = document.createElement('div')
+  article.classList.add('article')
+  
+  const heading = document.createElement('h2')
+  heading.textContent = title
+  
+  const dateP = document.createElement('p')
+  dateP.classList.add('date')
+  dateP.textContent = date
+  
+  const p1 = document.createElement('p')
+  p1.textContent = firstParagraph
+  
+  const p2 = document.createElement('p')
+  p2.textContent = secondParagraph
+  
+  const p3 = document.createElement('p')
+  p3.textContent = thirdParagraph
+  
+  const expandButton = document.createElement('span')
+  expandButton.classList.add('expandButton')
+  expandButton.textContent = '+'
+
+  article.append(heading, dateP, p1, p2, p3, expandButton)
+  
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  })
+
+  return article
+}
+
+const articles = document.querySelector('.articles')
+
+data.forEach(article => articles.appendChild(articleMaker(article)))
+
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
